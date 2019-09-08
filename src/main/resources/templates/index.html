@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Ares</title>
+</head>
+<body>
+<form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+    　　　<input type="file" id="upload" name="file"/> <br/>
+    　　　<input type="submit" value="上传"/>
+</form>
+
+<div th:if="${success}">上传成功，请打开App进行操作！</div>
+<div th:if="${success}">
+    <a href="/download">点击下载处理后Excel文件</a>
+</div>
+</body>
+</html>
