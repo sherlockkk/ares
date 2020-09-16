@@ -10,6 +10,7 @@
     　　　<input type="submit" value="上传"/>
 </form>
 
+<div th:if="${error}" th:text=${message}></div>
 <div th:if="${success}">上传成功，请打开App进行操作！</div>
 <div th:if="${success}">
     <a href="/download">点击下载处理后Excel文件</a>

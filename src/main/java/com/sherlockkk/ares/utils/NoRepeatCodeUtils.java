@@ -1,4 +1,4 @@
-package com.sherlockkk.ares.util;
+package com.sherlockkk.ares.utils;
 
 import java.util.ArrayList;
 import java.util.List;
