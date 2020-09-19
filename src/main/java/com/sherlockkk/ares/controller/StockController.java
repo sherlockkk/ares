@@ -65,7 +65,7 @@ public class StockController {
 
     @PostMapping("/update")
     @ResponseBody
-    public Result update(String partsCode, @RequestParam(defaultValue = "0") Integer checkQuantity) {
+    public Result update(@RequestParam String partsCode, @RequestParam(defaultValue = "0") Integer checkQuantity) {
         if (StringUtils.isEmpty(partsCode)) {
             return Result.error("partsCode cannot be empty");
         }
@@ -74,7 +74,7 @@ public class StockController {
 
     @GetMapping("/getOneByCode")
     @ResponseBody
-    public Result getOneByCode(String partsCode) {
+    public Result getOneByCode(@RequestParam String partsCode) {
         if (StringUtils.isEmpty(partsCode)) {
             return Result.error("partsCode cannot be empty");
         }
