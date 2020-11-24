@@ -26,5 +26,6 @@ public class StockListener extends AnalysisEventListener<Stock> {
     @Override
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
         stockService.saveAll(stocks);
+        stocks.clear();
     }
 }

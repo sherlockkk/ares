@@ -44,7 +44,7 @@ public class Stock {
     @ExcelProperty("Total quantity of good materials")
     @Column(nullable = false)
     @ColumnDefault("0")
-    private Integer goodQuantity;
+    private int goodQuantity;
 
     /**
      * 核对数量
@@ -52,7 +52,7 @@ public class Stock {
     @ExcelProperty("Check quantity")
     @Column(nullable = false)
     @ColumnDefault("0")
-    private Integer checkQuantity;
+    private int checkQuantity;
 
     /**
      * 差异数量
@@ -60,7 +60,7 @@ public class Stock {
     @ExcelProperty("Different quantity")
     @Column(nullable = false)
     @ColumnDefault("0")
-    private Integer differentQuantity;
+    private int differentQuantity;
 
     /**
      * 更新时间

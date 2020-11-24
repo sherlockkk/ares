@@ -1,6 +1,7 @@
 package com.sherlockkk.ares.controller;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.support.ExcelTypeEnum;
 import com.sherlockkk.ares.common.base.Result;
 import com.sherlockkk.ares.domain.StockData;
 import com.sherlockkk.ares.entity.Stock;
@@ -42,8 +43,22 @@ public class StockController {
             model.addAttribute("message", "不允许上传空文件");
             return "index";
         }
+        String originalFilename = file.getOriginalFilename();
+        assert originalFilename != null;
+        int i = originalFilename.lastIndexOf(".");
+        String fileSuffix = originalFilename.substring(i);
+        ExcelTypeEnum excelTypeEnum;
+        if (".xls".equals(fileSuffix)) {
+            excelTypeEnum = ExcelTypeEnum.XLS;
+        } else if (".xlsx".equals(fileSuffix)) {
+            excelTypeEnum = ExcelTypeEnum.XLSX;
+        } else {
+            model.addAttribute("error", true);
+            model.addAttribute("message", "上传文件格式不正确");
+            return "index";
+        }
 
-        EasyExcel.read(file.getInputStream(), Stock.class, stockListener).sheet().doRead();
+        EasyExcel.read(file.getInputStream(), Stock.class, stockListener).excelType(excelTypeEnum).sheet().doRead();
         model.addAttribute("success", true);
         return "index";
     }
@@ -59,7 +74,7 @@ public class StockController {
         List<Stock> stocks = stockService.findAll();
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("utf-8");
-        response.setHeader("Content-disposition", "attachment;filename=demo.xlsx");
+        response.setHeader("Content-disposition", "attachment;filename=data.xlsx");
         EasyExcel.write(response.getOutputStream(), Stock.class).sheet("sheet").doWrite(stocks);
     }
 
